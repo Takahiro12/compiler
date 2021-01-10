@@ -1,0 +1,26 @@
+docker build -t compilerbook https://www.sigbus.info/compilerbook/Dockerfile
+
+
+●lsコマンドの実行
+docker run --rm compilerbook ls /
+
+●マウントして実行
+docker run --rm -v /Users/t.ono/Desktop/compiler:/9cc -w /9cc compilerbook make test
+= com make test
+
+
+●インタラクティブ
+docker run --rm -it -v /Users/t.ono/Desktop/compiler:/9cc compilerbook
+
+
+●lsの中を見る
+docker run --rm -v /Users/t.ono/Desktop/compiler:/9cc -w /9cc compilerbook objdump -d -M intel /bin/ls
+
+
+git remote add origin git@github.com:Takahiro12/compiler.git
+
+docker run --rm -v /Users/t.ono/Desktop/compiler:/9cc -w /9cc compilerbook cc -o test1 test1.c
+docker run --rm -v /Users/t.ono/Desktop/compiler:/9cc -w /9cc compilerbook ./test1
+docker run --rm -v /Users/t.ono/Desktop/compiler:/9cc -w /9cc compilerbook echo $?
+docker run --rm -v /Users/t.ono/Desktop/compiler:/9cc -w /9cc compilerbook cc -o test2 test2.s
+docker run --rm -v /Users/t.ono/Desktop/compiler:/9cc -w /9cc compilerbook ./test1
